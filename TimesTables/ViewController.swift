@@ -10,9 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate {
 
+    @IBOutlet var table: UITableView!
     @IBOutlet var sliderValue: UISlider!
     
     @IBAction func sliderMoved(sender: AnyObject) {
+        table.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         let timesTable = Int(sliderValue.value * 20)
-        cell.textLabel?.text = String(timesTable * indexPath.row)
+        cell.textLabel?.text = String(timesTable * (indexPath.row + 1))
         return cell
         
     }
